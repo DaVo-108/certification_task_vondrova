@@ -1,0 +1,23 @@
+{
+  "name": "certification_task_vondrova",
+  "version": "1.0.0",
+  "description": "Nový testovací projekt na aplikaci TEG#B, což je bankovní aplikace ve vývoji.",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaVo-108/certification_task_vondrova.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaVo-108/certification_task_vondrova/issues"
+  },
+  "homepage": "https://github.com/DaVo-108/certification_task_vondrova#readme",
+  "dependencies": {
+    "cypress": "^15.2.0"
+  }
+}
