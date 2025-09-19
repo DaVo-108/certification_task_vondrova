@@ -6,7 +6,9 @@ import { RegisterPage } from "./register_page";
 export class LoginPage extends BasePage {
   constructor() {
     super("/");
-    //this.url = "https://tegb-frontend-88542200c6db.herokuapp.com/";
+    cy.intercept("https://tegb-frontend-88542200c6db.herokuapp.com/").as(
+      "login_api"
+    );
     this.usernameInput = customElement("[data-testid='username-input']");
     this.passwordInput = customElement("[data-testid='password-input']");
     this.loginButton = customElement("[data-testid='submit-button']");
@@ -30,6 +32,7 @@ export class LoginPage extends BasePage {
 
   clickLogin() {
     this.loginButton.click();
+    cy.wait("@login_api");
     return new DashboardPage();
   }
 
