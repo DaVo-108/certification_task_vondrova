@@ -15,6 +15,7 @@ export class LoginPage extends BasePage {
     this.passwordInput = customElement("[data-testid='password-input']");
     this.loginButton = customElement("[data-testid='submit-button']");
     this.registerAnchor = customElement("[data-testid='register-button']");
+    this.logoutButton = customElement(".logout-link");
   }
 
   openTegb() {
@@ -49,5 +50,10 @@ export class LoginPage extends BasePage {
     this.clickLogin();
     cy.wait("@profile_api");
     return new ProfileDetailsPage();
+  }
+
+  clicklogout() {
+    this.logoutButton.click();
+    return new BasePage();
   }
 }

@@ -3,6 +3,7 @@ import { faker } from "@faker-js/faker";
 import { RegisterPage } from "../page-objects/register_page";
 import { UserApi } from "../api/tegb/userApi";
 import { ProfileDetailsPage } from "../page-objects/profile_details_page";
+import { CheckDataPage } from "../page-objects/check_data_page";
 
 describe("Certification: first E2E Test", () => {
   const username = faker.internet.username();
@@ -44,6 +45,19 @@ describe("Certification: first E2E Test", () => {
       .typeEmail(email)
       .typePhone(phone)
       .typeAge(age)
-      .clickSave();
+      .clickSave()
+      .logoIsVisible();
+
+    new CheckDataPage()
+      .nameContainsText(firstName)
+      .surnameContainsText(lastName)
+      .emailContainsText(email)
+      .phoneContainsText(phone)
+      .ageContainText(age)
+      .accountNumberIsVisible()
+      .accountBalanceContainsText("10000")
+      .accountTypeContainsText("Test");
+
+    new LoginPage().clicklogout();
   });
 });
