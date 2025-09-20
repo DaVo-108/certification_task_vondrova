@@ -2,6 +2,7 @@ import { LoginPage } from "../page-objects/login_page";
 import { faker } from "@faker-js/faker";
 import { RegisterPage } from "../page-objects/register_page";
 import { UserApi } from "../api/tegb/userApi";
+import { ProfileDetailsPage } from "../page-objects/profile_details_page";
 
 describe("Certification: first E2E Test", () => {
   const username = faker.internet.username();
@@ -9,6 +10,10 @@ describe("Certification: first E2E Test", () => {
   const email = faker.internet.email();
   const startBalance = 10000;
   const type = "Test";
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
+  const phone = faker.phone.number({ style: "international" });
+  const age = faker.number.int({ min: 18, max: 80 });
 
   it("Registration to teg#b", () => {
     new LoginPage().visit().clickRegister();
@@ -32,5 +37,13 @@ describe("Certification: first E2E Test", () => {
         cy.wait("@accounts_api");
       });
     });
+    new ProfileDetailsPage()
+      .clickEditProfile()
+      .typeFirstName(firstName)
+      .typeLastName(lastName)
+      .typeEmail(email)
+      .typePhone(phone)
+      .typeAge(age)
+      .clickSave();
   });
 });

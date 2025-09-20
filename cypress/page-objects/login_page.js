@@ -1,5 +1,6 @@
 import { BasePage } from "../common/base_page";
 import { customElement } from "../helpers/custom_element";
+import { ProfileDetailsPage } from "./profile_details_page";
 import { ProfilePage } from "./profile_page";
 import { RegisterPage } from "./register_page";
 
@@ -47,6 +48,6 @@ export class LoginPage extends BasePage {
     this.typePassword(password);
     this.clickLogin();
     cy.wait("@profile_api");
-    return new ProfilePage();
+    return new ProfileDetailsPage();
   }
 }
