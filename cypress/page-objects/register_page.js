@@ -1,6 +1,6 @@
 import { BasePage } from "../common/base_page";
 import { customElement } from "../helpers/custom_element";
-import { DashboardPage } from "./dashboard_page";
+import { ProfilePage } from "./profile_page";
 
 export class RegisterPage extends BasePage {
   constructor() {
@@ -42,6 +42,6 @@ export class RegisterPage extends BasePage {
 
   clickLogin() {
     thisloginButton().click();
-    return new DashboardPage();
+    return new ProfilePage();
   }
 }

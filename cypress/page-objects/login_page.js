@@ -1,6 +1,6 @@
 import { BasePage } from "../common/base_page";
 import { customElement } from "../helpers/custom_element";
-import { DashboardPage } from "./dashboard_page";
+import { ProfilePage } from "./profile_page";
 import { RegisterPage } from "./register_page";
 
 export class LoginPage extends BasePage {
@@ -9,6 +9,7 @@ export class LoginPage extends BasePage {
     cy.intercept("https://tegb-frontend-88542200c6db.herokuapp.com/").as(
       "login_api"
     );
+    cy.intercept("/tegb/profile").as("profile_api");
     this.usernameInput = customElement("[data-testid='username-input']");
     this.passwordInput = customElement("[data-testid='password-input']");
     this.loginButton = customElement("[data-testid='submit-button']");
@@ -33,7 +34,7 @@ export class LoginPage extends BasePage {
   clickLogin() {
     this.loginButton.click();
     cy.wait("@login_api");
-    return new DashboardPage();
+    return new ProfilePage();
   }
 
   clickRegister() {
@@ -45,6 +46,7 @@ export class LoginPage extends BasePage {
     this.typeUsername(username);
     this.typePassword(password);
     this.clickLogin();
-    return new DashboardPage();
+    cy.wait("@profile_api");
+    return new ProfilePage();
   }
 }

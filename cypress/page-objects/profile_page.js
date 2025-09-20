@@ -1,9 +1,9 @@
 import { BasePage } from "../common/base_page";
 import { customElement } from "../helpers/custom_element";
 
-export class DashboardPage extends BasePage {
+export class ProfilePage extends BasePage {
   constructor() {
-    super("/dashboard");
+    super("/profile");
     this.logo = customElement("[data-testid='logo-img']");
   }
 
