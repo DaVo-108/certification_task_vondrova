@@ -1,6 +1,5 @@
 import { BasePage } from "../common/base_page";
 import { customElement } from "../helpers/custom_element";
-import { ProfilePage } from "./profile_page";
 
 export class CheckDataPage extends BasePage {
   constructor() {
