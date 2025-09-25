@@ -29,7 +29,6 @@ describe("Certification: first E2E Test", () => {
     const userApi = new UserApi();
     userApi.login(username, password).then((response) => {
       const token = response.body.access_token;
-      cy.setCookie("access_token", "token");
 
       cy.intercept("/tegb/accounts").as("accounts_api");
       userApi.addAccount(startBalance, type, token).then((response) => {

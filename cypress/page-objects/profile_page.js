@@ -10,5 +10,6 @@ export class ProfilePage extends BasePage {
 
   logoIsVisible() {
     this.logo.isVisible();
+    return this;
   }
 }

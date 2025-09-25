@@ -3,10 +3,9 @@ import { customElement } from "../helpers/custom_element";
 import { LoginPage } from "./login_page";
 import { ProfileDetailsPage } from "./profile_details_page";
 
-export class DashboardPage extends LoginPage {
+export class DashboardPage extends BasePage {
   constructor() {
     super("/dashboard");
-    this.url = Cypress.env("tegb_login_url");
 
     this.logo = customElement('[data-testid="logo-img"]');
     this.headerTitle = customElement(".app-title");
@@ -42,7 +41,6 @@ export class DashboardPage extends LoginPage {
     );
     this.addAccountButton = customElement(".account-action");
 
-    this.footerInfo = customElement(".dashboard-footer > span");
     this.loginButton = customElement("[data-testid='submit-button']");
   }
 
@@ -69,9 +67,9 @@ export class DashboardPage extends LoginPage {
     return new ProfileDetailsPage();
   }
 
-  logoutButton() {
-    this.logoutButton.isVisible();
-    return this;
+  clickLogoutButton() {
+    this.logoutButton.click();
+    return new LoginPage();
   }
 
   nameContainsText(firstName) {

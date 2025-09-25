@@ -7,9 +7,7 @@ import { RegisterPage } from "./register_page";
 export class LoginPage extends BasePage {
   constructor() {
     super("/");
-    cy.intercept("https://tegb-frontend-88542200c6db.herokuapp.com/").as(
-      "login_api"
-    );
+    cy.intercept(Cypress.env("tegb_login_url")).as("login_api");
     cy.intercept("/tegb/profile").as("profile_api");
     this.usernameInput = customElement("[data-testid='username-input']");
     this.passwordInput = customElement("[data-testid='password-input']");
