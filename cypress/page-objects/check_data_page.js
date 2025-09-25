@@ -53,4 +53,9 @@ export class CheckDataPage extends BasePage {
     this.accountType.containsText(type);
     return this;
   }
+
+  accountCheck(startBalance, type) {
+    this.accountBalance.containsText(startBalance);
+    this.accountType.containsText(type);
+  }
 }
