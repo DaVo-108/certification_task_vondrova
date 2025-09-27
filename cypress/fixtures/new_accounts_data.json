@@ -1,0 +1,27 @@
+[
+  {
+    "startBalance": 0.0,
+    "type": "personal",
+    "description": "User 1 - Account 1: 0,00 Kč"
+  },
+  {
+    "startBalance": 200000.52,
+    "type": "company",
+    "description": "User 2 - Account 2: 200000,52 Kč"
+  },
+  {
+    "startBalance": -12345.0,
+    "type": "family",
+    "description": "User 3 - Account 3: -12345,00 Kč"
+  },
+  {
+    "startBalance": -196000921.0,
+    "type": "business",
+    "description": "User 4 - Account 4: -19600921,00 Kč"
+  },
+  {
+    "startBalance": 298000123.0,
+    "type": "holiday",
+    "description": "User 5 - Account 5: 298000123,00 Kč"
+  }
+]

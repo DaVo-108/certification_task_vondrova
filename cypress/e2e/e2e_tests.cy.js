@@ -1,0 +1,64 @@
+import { LoginPage } from "../page-objects/login_page";
+import { faker } from "@faker-js/faker";
+import { UserApi } from "../api/tegb/userApi";
+import { ProfileDetailsPage } from "../page-objects/profile_details_page";
+import { CheckDataPage } from "../page-objects/check_data_page";
+
+describe("E2E Test", () => {
+  const username = faker.internet.username();
+  const password = faker.internet.password();
+  const email = faker.internet.email();
+  const startBalance = 10000;
+  const type = "Test";
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
+  const phone = faker.phone.number({ style: "international" });
+  const age = faker.number.int({ min: 18, max: 80 });
+
+  it("Registration to teg#b", () => {
+    new LoginPage()
+      .visit()
+      .clickRegister()
+      .typeUsername(username)
+      .typePassword(password)
+      .typeEmail(email)
+      .clickRegistr()
+      .welcomeMessageIsVisible()
+      .typeUsername(username)
+      .typePassword(password)
+      .clickLogin();
+
+    const userApi = new UserApi();
+    userApi.login(username, password).then((response) => {
+      const token = response.body.access_token;
+
+      cy.intercept("/tegb/accounts").as("accounts_api");
+      userApi.addAccount(startBalance, type, token).then((response) => {
+        const token = response.body.access_token;
+        cy.setCookie("access_token", "token");
+        cy.wait("@accounts_api");
+      });
+    });
+    new ProfileDetailsPage()
+      .clickEditProfile()
+      .typeFirstName(firstName)
+      .typeLastName(lastName)
+      .typeEmail(email)
+      .typePhone(phone)
+      .typeAge(age)
+      .clickSave()
+      .logoIsVisible();
+
+    new CheckDataPage()
+      .nameContainsText(firstName)
+      .surnameContainsText(lastName)
+      .emailContainsText(email)
+      .phoneContainsText(phone)
+      .ageContainText(age)
+      .accountNumberIsVisible()
+      .accountBalanceContainsText("10000")
+      .accountTypeContainsText("Test");
+
+    new LoginPage().clicklogout();
+  });
+});

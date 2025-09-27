@@ -7,8 +7,7 @@ module.exports = defineConfig({
     },
     env: {
       tegb_login_url: "https://tegb-frontend-88542200c6db.herokuapp.com/",
-      tegb_registr_url:
-        "https://tegb-frontend-88542200c6db.herokuapp.com/register",
+      tegb_api_url: "https://tegb-backend-877a0b063d29.herokuapp.com/",
     },
     watchForFileChanges: false,
     defaultCommandTimeout: 10000,
