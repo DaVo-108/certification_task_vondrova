@@ -23,8 +23,8 @@ describe("Atomic tests", { testIsolation: false }, () => {
       .typePassword(password)
       .typeEmail(email)
       .clickRegistr()
-      .welcomeMessageIsVisible();
-    new LoginPage().login(username, password);
+      .welcomeMessageIsVisible()
+      .login(username, password);
   });
 
   context("Logo Test", () => {
@@ -102,7 +102,7 @@ describe("Atomic tests", { testIsolation: false }, () => {
       profilePage.nameTitle.containsText("Jméno");
     });
 
-    it("surname is visible", () => {
+    it("Surname is visible", () => {
       profilePage.surnameTitle.isVisible();
     });
 

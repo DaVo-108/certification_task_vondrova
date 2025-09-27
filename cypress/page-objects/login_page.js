@@ -34,6 +34,7 @@ export class LoginPage extends BasePage {
   clickLogin() {
     this.loginButton.click();
     cy.wait("@login_api");
+    cy.wait("@profile_api");
     return new ProfilePage();
   }
 

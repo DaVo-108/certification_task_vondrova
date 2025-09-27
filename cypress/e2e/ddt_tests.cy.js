@@ -2,7 +2,6 @@ import { UserApi } from "../api/tegb/userApi";
 import accountsData from "../fixtures/new_accounts_data.json";
 import { faker } from "@faker-js/faker";
 import { LoginPage } from "../page-objects/login_page";
-import { RegisterPage } from "../page-objects/register_page";
 import { CheckDataPage } from "../page-objects/check_data_page";
 
 describe("Data Driven Tests", () => {
@@ -14,14 +13,17 @@ describe("Data Driven Tests", () => {
     username = faker.internet.username();
     password = faker.internet.password();
     email = faker.internet.email();
-    new LoginPage().visit().clickRegister();
-    new RegisterPage()
+    new LoginPage()
+      .visit()
+      .clickRegister()
       .typeUsername(username)
       .typePassword(password)
       .typeEmail(email)
       .clickRegistr()
-      .welcomeMessageIsVisible();
-    new LoginPage().typeUsername(username).typePassword(password).clickLogin();
+      .welcomeMessageIsVisible()
+      .typeUsername(username)
+      .typePassword(password)
+      .clickLogin();
   });
   accountsData.forEach((accountData) => {
     const shouldSkip =

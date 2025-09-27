@@ -1,5 +1,6 @@
 import { BasePage } from "../common/base_page";
 import { customElement } from "../helpers/custom_element";
+import { LoginPage } from "./login_page";
 import { ProfilePage } from "./profile_page";
 
 export class RegisterPage extends BasePage {
@@ -38,6 +39,7 @@ export class RegisterPage extends BasePage {
 
   welcomeMessageIsVisible() {
     this.welcomeMessage.isVisible();
+    return new LoginPage();
   }
 
   clickLogin() {

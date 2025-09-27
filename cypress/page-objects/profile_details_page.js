@@ -48,6 +48,7 @@ export class ProfileDetailsPage extends BasePage {
 
   clickSave() {
     this.saveButton.click();
+    cy.wait("@profile_api");
     return new ProfilePage();
   }
 }

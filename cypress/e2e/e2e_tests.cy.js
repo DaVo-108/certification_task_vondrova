@@ -1,11 +1,10 @@
 import { LoginPage } from "../page-objects/login_page";
 import { faker } from "@faker-js/faker";
-import { RegisterPage } from "../page-objects/register_page";
 import { UserApi } from "../api/tegb/userApi";
 import { ProfileDetailsPage } from "../page-objects/profile_details_page";
 import { CheckDataPage } from "../page-objects/check_data_page";
 
-describe("Certification: first E2E Test", () => {
+describe("E2E Test", () => {
   const username = faker.internet.username();
   const password = faker.internet.password();
   const email = faker.internet.email();
@@ -17,14 +16,17 @@ describe("Certification: first E2E Test", () => {
   const age = faker.number.int({ min: 18, max: 80 });
 
   it("Registration to teg#b", () => {
-    new LoginPage().visit().clickRegister();
-    new RegisterPage()
+    new LoginPage()
+      .visit()
+      .clickRegister()
       .typeUsername(username)
       .typePassword(password)
       .typeEmail(email)
       .clickRegistr()
-      .welcomeMessageIsVisible();
-    new LoginPage().typeUsername(username).typePassword(password).clickLogin();
+      .welcomeMessageIsVisible()
+      .typeUsername(username)
+      .typePassword(password)
+      .clickLogin();
 
     const userApi = new UserApi();
     userApi.login(username, password).then((response) => {
